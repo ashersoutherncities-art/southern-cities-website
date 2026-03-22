@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Southern Cities Enterprises | Real Estate & Construction Experts</title>
-    <meta name="description" content="Build, invest, and grow with Southern Cities Enterprises. Experts in construction, brokerage, development, and investor services.">
+    <title>Southern Cities | Real Estate Investment Tools Built by Investors, For Investors</title>
+    <meta name="description" content="We run deals ourselves. Deal analysis, cost estimating, and investor lead generation. Same-day turnaround because time kills deals.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== CSS VARIABLES (EXACT COLORS FROM REFERENCE) ===== */
         :root {
             --navy: #132452;
             --orange: #fa8c41;
@@ -20,10 +19,9 @@
             --black: #000000;
             --white: #ffffff;
             --gray: #6F6E77;
-            --light-bg: #F6F6FF;
+            --light-gray: #F7F7F7;
         }
 
-        /* ===== GLOBAL RESET ===== */
         * {
             margin: 0;
             padding: 0;
@@ -31,15 +29,15 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--navy);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
         }
 
         a {
@@ -47,133 +45,277 @@
             color: inherit;
         }
 
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 1.5rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        /* ===== HERO SECTION (BLACK BACKGROUND, WHITE TEXT) ===== */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .btn-header {
+            background: var(--orange);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-header:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
         .hero {
-            background-color: var(--black);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--navy) 0%, #1a2f6b 100%);
+            color: white;
+            padding: 5rem 5% 4rem;
             text-align: center;
-            padding: 120px 5% 80px;
-            position: relative;
         }
 
         .hero h1 {
             font-size: 3.5rem;
-            font-weight: 700;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero .subtitle {
-            font-family: 'Playfair Display', serif;
+        .hero .subhead {
+            font-size: 1.4rem;
             color: var(--orange);
-            font-size: 1.3rem;
             margin-bottom: 2.5rem;
-            font-weight: 400;
+            font-weight: 500;
         }
 
-        .hero-buttons {
+        .hero-cta {
+            background: var(--orange);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover {
+            background: var(--white);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(250, 140, 65, 0.3);
+        }
+
+        /* Social Proof Bar */
+        .social-proof {
+            background: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .social-proof-stats {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 4rem;
             flex-wrap: wrap;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 1rem 2.5rem;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--orange);
-        }
-
-        .btn-primary {
-            background-color: var(--orange);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--white);
-            color: var(--navy);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--white);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--orange);
-        }
-
-        /* ===== FOUR-COLUMN FEATURE CARDS ===== */
-        .features {
-            background-color: var(--white);
-            padding: 80px 5%;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .feature-card {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 2.5rem 1.5rem;
+        .stat {
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--orange);
+            display: block;
         }
 
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background-color: var(--orange);
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 5%;
+            background: var(--light-gray);
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services-header h2 {
+            font-size: 2.8rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .services-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--orange);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
         }
 
-        .feature-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .feature-card h3 {
-            font-family: 'Playfair Display', serif;
+        .service-card h3 {
+            font-size: 1.6rem;
             color: var(--navy);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
-        .feature-card p {
+        .service-price {
+            font-size: 1.1rem;
+            color: var(--orange);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card p {
             color: var(--gray);
-            font-size: 16px;
-            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
         }
 
-        /* ===== ABOUT SECTION (WHITE BACKGROUND, NAVY/ORANGE ACCENTS) ===== */
-        .about {
-            background-color: var(--white);
-            padding: 80px 5%;
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
         }
 
-        .about-container {
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--navy);
+            font-size: 0.95rem;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            color: var(--orange);
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        .service-cta {
+            background: var(--orange);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid var(--orange);
+        }
+
+        .service-cta:hover {
+            background: white;
+            color: var(--orange);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: var(--red);
+            color: white;
+            padding: 0.4rem 2.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            text-transform: uppercase;
+        }
+
+        /* Why Us Section */
+        .why-us {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .why-us-content {
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
@@ -182,434 +324,367 @@
             align-items: center;
         }
 
-        .about-content h2 {
+        .why-us h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-us p {
+            font-size: 1.1rem;
             color: var(--gray);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .about-content h1 {
-            color: var(--orange);
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
-            color: var(--navy);
-            font-size: 18px;
-            margin-bottom: 1.5rem;
             line-height: 1.8;
+            margin-bottom: 1.5rem;
         }
 
-        .about-content .highlight {
-            font-size: 18px;
-            color: var(--navy);
-            font-weight: 500;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* ===== DIVISIONS SECTION ===== */
-        .divisions {
-            background-color: var(--white);
-            padding: 80px 5%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h1 {
-            color: var(--navy);
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-header .divider {
-            width: 25%;
-            height: 3px;
-            background-color: var(--orange);
-            margin: 0 auto;
-        }
-
-        .division-cards {
-            max-width: 1200px;
-            margin: 0 auto;
+        .credentials {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .division-card {
-            background-color: var(--white);
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+        .credential-badge {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
         }
 
-        .division-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .division-icon {
-            width: 80px;
-            height: 80px;
-            background-color: var(--orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-        }
-
-        .division-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .division-card h3 {
+        .credential-badge strong {
+            display: block;
             color: var(--orange);
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
         }
 
-        .division-card h2 {
-            color: var(--navy);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .division-card p {
+        .credential-badge span {
+            font-size: 0.9rem;
             color: var(--gray);
-            margin-bottom: 1rem;
-            line-height: 1.8;
         }
 
-        .division-card ul {
-            list-style: none;
-            padding-left: 0;
+        .testimonial {
+            background: var(--navy);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
         }
 
-        .division-card ul li {
-            color: var(--navy);
-            padding: 0.5rem 0;
-            font-weight: 500;
+        .testimonial-quote {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
-        .division-card ul li:before {
-            content: "✓ ";
+        .testimonial-author {
+            font-weight: 600;
             color: var(--orange);
-            font-weight: bold;
-            margin-right: 0.5rem;
         }
 
-        /* ===== FOOTER (LIGHT BACKGROUND) ===== */
+        /* CTA Section */
+        .cta-section {
+            background: var(--orange);
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--orange);
+            padding: 1.3rem 3.5rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--navy);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
         .footer {
-            background-color: var(--light-bg);
-            padding: 60px 5% 30px;
+            background: var(--navy);
+            color: white;
+            padding: 3rem 5% 1.5rem;
+            text-align: center;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        .footer-section h3 {
-            color: var(--navy);
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
 
-        .footer-section p, .footer-section a {
-            color: var(--gray);
-            font-size: 16px;
-            line-height: 2;
-            display: block;
-        }
-
-        .footer-section a:hover {
+        .footer-links a:hover {
+            opacity: 1;
             color: var(--orange);
         }
 
-        .footer-logo {
-            max-width: 200px;
-            margin-bottom: 1.5rem;
-        }
-
         .footer-bottom {
-            background-color: var(--navy);
-            color: var(--white);
-            text-align: center;
-            padding: 1.5rem;
-            font-size: 16px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
+        .footer-bottom p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
         @media (max-width: 968px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .about-container {
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
-            .division-cards {
+            .why-us-content {
                 grid-template-columns: 1fr;
             }
 
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
+            .nav-links {
+                display: none;
+            }
+
+            .social-proof-stats {
+                gap: 2rem;
+            }
+
+            .credentials {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 640px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
             .hero h1 {
                 font-size: 2rem;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero .subhead {
+                font-size: 1.1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .services-header h2 {
+                font-size: 2rem;
+            }
+
+            .why-us h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- GLOBAL HEADER -->
-    <div id="header-placeholder"></div>
-    <script src="load-header.js"></script>
-
-    <!-- ===== HERO SECTION ===== -->
-    <section class="hero" id="home">
-        <p class="subtitle">Construction • Brokerage • Investor Services • Development</p>
-        <h1>A Unified Real Estate AND<br>Development Enterprise</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-            Where Real Estate opportunities are identified, built, and maximized.
-        </p>
-        <div class="hero-buttons">
-            <a href="#divisions" class="btn-primary">EXPLORE OUR DIVISIONS</a>
-            <a href="#contact" class="btn-secondary">CONTACT US</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                Southern<span>Cities</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#why-us">Why Us</a>
+                <a href="contact.html" class="btn-header">Get Started</a>
+            </nav>
         </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Real Estate Investment Tools Built by Investors, For Investors</h1>
+        <p class="subhead">We run deals ourselves. These are the same tools we use daily.</p>
+        <a href="#services" class="hero-cta">See Our Services</a>
     </section>
 
-    <!-- ===== FEATURES (PLAN, EXECUTE, OPTIMIZE, COMPLY) ===== -->
-    <section class="features">
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <img src="./assets/images/icon-plan.svg" alt="Plan Icon">
-                </div>
-                <h3>PLAN</h3>
-                <p>We assess market fundamentals and scope before execution.</p>
+    <!-- Social Proof -->
+    <section class="social-proof">
+        <div class="social-proof-stats">
+            <div class="stat">
+                <span class="stat-number">150+</span>
+                <span class="stat-label">Deals Analyzed in 2025</span>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <img src="./assets/images/icon-execute.svg" alt="Execute Icon">
-                </div>
-                <h3>EXECUTE</h3>
-                <p>Integrated teams align construction, brokerage, operations.</p>
+            <div class="stat">
+                <span class="stat-number">8</span>
+                <span class="stat-label">Active Projects</span>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <img src="./assets/images/icon-optimize.svg" alt="Optimize Icon">
-                </div>
-                <h3>OPTIMIZE</h3>
-                <p>Assets are positioned for maximum long-term value or strategic exit.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <img src="./assets/images/icon-comply.svg" alt="Comply Icon">
-                </div>
-                <h3>COMPLY</h3>
-                <p>Licensed, insured, and compliant execution across all divisions.</p>
+            <div class="stat">
+                <span class="stat-number">24hr</span>
+                <span class="stat-label">Turnaround Time</span>
             </div>
         </div>
     </section>
 
-    <!-- ===== ABOUT SECTION ===== -->
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-content">
-                <h2>Who We Are</h2>
-                <h1>Construction. Brokerage. Investment. Development.</h1>
-                <p>
-                    Southern Cities Enterprises is a full-stack real estate company providing construction, brokerage, 
-                    investor services, and development solutions across the Southeast. Our vertically integrated approach 
-                    allows us to manage projects efficiently from acquisition and renovation to disposition and long-term ownership.
-                </p>
-                <p class="highlight">
-                    We work with homebuyers, sellers, investors, and land owners, whether experienced or navigating real 
-                    estate for the first time to identify opportunities, unlock hidden values and execute with precision.
-                </p>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-header">
+            <h2>Services You Can Use Today</h2>
+            <p>Same-day turnaround because time kills deals. Priced for volume — we make money on scale, not markup.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Deal Analysis -->
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Deal Analysis</h3>
+                <span class="service-price">$297 - $997</span>
+                <p>Complete financial analysis so you know if the deal works before you commit.</p>
+                <ul class="service-features">
+                    <li>ARV analysis</li>
+                    <li>Repair estimates</li>
+                    <li>Cash flow projections</li>
+                    <li>ROI calculations</li>
+                    <li>24-48 hour turnaround</li>
+                </ul>
+                <a href="services.html#deal-analysis" class="service-cta">View Packages</a>
             </div>
-            <div class="about-image">
-                <img src="./assets/images/construction-icon.svg" alt="Southern Cities Team" style="opacity: 0.9;">
+
+            <!-- Cost Estimating -->
+            <div class="service-card">
+                <div class="service-icon">🔨</div>
+                <h3>Cost Estimating</h3>
+                <span class="service-price">$150 - $1,200</span>
+                <p>Accurate construction cost estimates from a licensed GC who runs his own rehabs.</p>
+                <ul class="service-features">
+                    <li>Labor & materials breakdown</li>
+                    <li>Timeline estimates</li>
+                    <li>Contractor recommendations</li>
+                    <li>Scope of work documents</li>
+                    <li>24 hour - 5 day turnaround</li>
+                </ul>
+                <a href="services.html#cost-estimating" class="service-cta">View Packages</a>
+            </div>
+
+            <!-- Investor Lead Gen -->
+            <div class="service-card">
+                <span class="popular-badge">Most Popular</span>
+                <div class="service-icon">🎯</div>
+                <h3>Investor Lead Gen</h3>
+                <span class="service-price">$497 - $997/mo</span>
+                <p>Qualified investor leads delivered monthly. Pre-foreclosures, foreclosures, and motivated sellers.</p>
+                <ul class="service-features">
+                    <li>25-100 leads per month</li>
+                    <li>Custom criteria targeting</li>
+                    <li>Charlotte + surrounding counties</li>
+                    <li>Daily or weekly delivery</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="services.html#lead-gen" class="service-cta">View Plans</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== DIVISIONS SECTION ===== -->
-    <section class="divisions" id="divisions">
-        <div class="section-header">
-            <h1>SOUTHERN CITIES ENTERPRISE DIVISIONS</h1>
-            <div class="divider"></div>
-        </div>
-
-        <div class="division-cards">
-            <!-- Construction Division -->
-            <div class="division-card">
-                <div class="division-icon">
-                    <img src="./assets/images/construction-icon.svg" alt="Construction">
-                </div>
-                <h3>Our Construction Capabilities</h3>
-                <h2>Integrated Construction Solutions</h2>
+    <!-- Why Us Section -->
+    <section class="why-us" id="why-us">
+        <div class="why-us-content">
+            <div>
+                <h2>Why Trust Us?</h2>
+                <p><strong>Because we're investors who build tools for investors.</strong></p>
                 <p>
-                    Southern Cities provides licensed general contracting services for residential, investment, and development 
-                    projects. Our team delivers renovations, additions, and structural work with clear scopes, disciplined 
-                    timelines, and hands-on oversight.
+                    We're not consultants or advisors. We're licensed professionals running 8 active projects right now. 
+                    We've analyzed 150+ deals this year alone. Every service we offer is something we use ourselves.
                 </p>
-                <ul>
-                    <li>Full renovations & remodels</li>
-                    <li>Additions & expansions</li>
-                    <li>Structural & framing work</li>
-                    <li>Investor rehab projects</li>
-                    <li>Pre-construction planning</li>
-                </ul>
+                <p>
+                    When you hire us, you get the same tools, systems, and expertise we use to evaluate and execute our own deals.
+                </p>
+
+                <div class="credentials">
+                    <div class="credential-badge">
+                        <strong>Licensed GC</strong>
+                        <span>General Contractor</span>
+                    </div>
+                    <div class="credential-badge">
+                        <strong>Real Estate Broker</strong>
+                        <span>Active License</span>
+                    </div>
+                    <div class="credential-badge">
+                        <strong>Active Investor</strong>
+                        <span>8 Current Projects</span>
+                    </div>
+                    <div class="credential-badge">
+                        <strong>150+ Deals</strong>
+                        <span>Analyzed in 2025</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Brokerage Division -->
-            <div class="division-card">
-                <div class="division-icon">
-                    <img src="./assets/images/icon-execute.svg" alt="Brokerage">
-                </div>
-                <h3>Brokerage Services Built for Value</h3>
-                <h2>Real Estate Brokerage Focused on Value</h2>
-                <p>
-                    We provide professional real estate brokerage services focused on buying, selling, and value optimization. 
-                    We represent homeowners, investors, and partners using a strategy-driven approach designed to maximize outcomes.
+            <div class="testimonial">
+                <p class="testimonial-quote">
+                    "Time kills deals. That's why we built these services with same-day turnaround. 
+                    When you're competing for a property, 24 hours can be the difference between winning and losing."
                 </p>
-                <ul>
-                    <li>Buyer representation</li>
-                    <li>Seller representation</li>
-                    <li>Fix-Before-You-Sell strategies</li>
-                    <li>Investor acquisition support</li>
-                    <li>Market analysis & pricing strategy</li>
-                </ul>
-            </div>
-
-            <!-- Investor Services Division -->
-            <div class="division-card">
-                <div class="division-icon">
-                    <img src="./assets/images/icon-optimize.svg" alt="Investor Services">
-                </div>
-                <h3>Investor Services and Strategy</h3>
-                <h2>Integrated Support for Real Estate Investors</h2>
-                <p>
-                    Southern Cities supports real estate investors through construction coordination, brokerage representation, 
-                    and strategic guidance. Our investor services are designed to help clients evaluate opportunities, execute 
-                    projects efficiently, and manage risk.
-                </p>
-                <ul>
-                    <li>Investor-focused construction support</li>
-                    <li>Investor brokerage representation</li>
-                    <li>Deal evaluation & strategy support</li>
-                    <li>BRRRR strategy guidance</li>
-                    <li>Partnerships & referrals</li>
-                </ul>
-            </div>
-
-            <!-- Development Division -->
-            <div class="division-card">
-                <div class="division-icon">
-                    <img src="./assets/images/icon-comply.svg" alt="Development">
-                </div>
-                <h3>Development and Partnerships</h3>
-                <h2>Strategic Real Estate Development</h2>
-                <p>
-                    We develop residential and mixed-use projects through disciplined planning, strategic partnerships, and 
-                    hands-on execution. We collaborate with landowners, investors, and municipalities to evaluate feasibility 
-                    and deliver projects aligned with long-term market fundamentals.
-                </p>
-                <ul>
-                    <li>Land acquisition & feasibility analysis</li>
-                    <li>Ground-up residential development</li>
-                    <li>Mixed-use projects</li>
-                    <li>Joint venture partnerships</li>
-                    <li>Project oversight & execution</li>
-                </ul>
+                <p class="testimonial-author">— Darius Walton, Founder</p>
             </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer" id="contact">
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Move Faster?</h2>
+        <p>Get the same tools we use to analyze deals, estimate costs, and find opportunities.</p>
+        <a href="services.html" class="cta-button">View All Services</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-section">
-                <img src="./assets/images/logo.svg" alt="Logo" class="footer-logo">
-                <p>
-                    Southern Cities Enterprises provides integrated real estate solutions through construction, brokerage, 
-                    investor services, and development expertise.
-                </p>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="#home">Home</a>
-                <a href="#about">About Us</a>
-                <a href="#divisions">Our Divisions</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-section">
-                <h3>Our Divisions</h3>
-                <a href="#divisions">Construction</a>
-                <a href="#divisions">Brokerage</a>
-                <a href="#divisions">Investor Services</a>
-                <a href="#divisions">Development</a>
-            </div>
-            <div class="footer-section">
-                <h3>Office Location</h3>
-                <p>5231 Grays Ridge Dr<br>Charlotte NC 28269</p>
-                <p><strong>Phone:</strong><br><a href="tel:2523396146">(252) 339-6146</a></p>
+            <div class="footer-bottom">
+                <p>5231 Grays Ridge Dr, Charlotte NC 28269 | (252) 339-6146</p>
+                <p>© 2025 Southern Cities Enterprises. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <div class="footer-bottom">
-        <p>© 2025 Southern Cities Enterprise - All Rights Reserved.</p>
-    </div>
-
     <script>
-        // Smooth Scrolling
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();

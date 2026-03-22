@@ -3,23 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Southern Cities Enterprises</title>
-    <meta name="description" content="Get in touch with Southern Cities Enterprises for real estate and construction services.">
+    <title>Contact Us | Southern Cities</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --navy: #132452;
             --orange: #fa8c41;
-            --red: #E63A27;
-            --black: #000000;
             --white: #ffffff;
             --gray: #6F6E77;
-            --light-bg: #F6F6FF;
+            --light-gray: #F7F7F7;
         }
 
         * {
@@ -29,22 +26,70 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--navy);
             line-height: 1.6;
-            background: var(--light-bg);
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        /* Hero Section */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 1.5rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, #1a2f6b 100%);
             color: white;
-            padding: 4rem 5%;
+            padding: 5rem 5% 4rem;
             text-align: center;
         }
 
@@ -54,147 +99,269 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
+            font-size: 1.3rem;
             opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        /* Contact Form Container */
+        /* Contact Section */
+        .contact-section {
+            padding: 5rem 5%;
+            background: var(--light-gray);
+        }
+
         .contact-container {
-            max-width: 800px;
-            margin: 3rem auto;
-            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
         }
 
-        .contact-form {
+        .contact-info {
             background: white;
-            padding: 2.5rem;
+            padding: 3rem;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .form-section h2 {
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
             color: var(--navy);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--orange);
+        }
+
+        .info-item {
+            margin-bottom: 2rem;
+        }
+
+        .info-item h3 {
+            font-size: 1.1rem;
+            color: var(--orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .info-item a {
+            color: var(--navy);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .info-item a:hover {
+            color: var(--orange);
+        }
+
+        .quick-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .quick-link {
+            background: var(--orange);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .quick-link:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .contact-form h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--navy);
         }
 
         .form-group {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
             font-weight: 600;
+            margin-bottom: 0.5rem;
             color: var(--navy);
+            font-size: 0.95rem;
         }
 
         .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-family: 'Montserrat', sans-serif;
+            padding: 0.9rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s;
         }
 
         .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--orange);
         }
 
-        .btn-submit {
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
             background: var(--orange);
             color: white;
+            padding: 1.2rem 3rem;
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-submit:hover {
-            background: var(--navy);
-            transform: scale(1.02);
-        }
-
-        .success-message {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 1rem;
             border-radius: 8px;
-            margin-bottom: 1rem;
-            border: 1px solid #c3e6cb;
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 2rem;
-            color: var(--navy);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            color: var(--orange);
+        .submit-button:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
         }
 
         /* Footer */
         .footer {
             background: var(--navy);
             color: white;
-            padding: 2rem 5%;
+            padding: 3rem 5% 1.5rem;
             text-align: center;
-            margin-top: 4rem;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .contact-container {
+                grid-template-columns: 1fr;
             }
 
-            .contact-form {
-                padding: 1.5rem;
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- GLOBAL HEADER -->
-    <div id="header-placeholder"></div>
-    <script src="load-header.js"></script>
 
-    <!-- Hero Section -->
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                Southern<span>Cities</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
     <section class="hero">
-        <h1>Get in Touch</h1>
-        <p>Ready to start your project? Fill out the form below and we'll get back to you within 24 hours.</p>
+        <h1>Let's Work Together</h1>
+        <p>Ready to analyze your next deal? Need a cost estimate? Looking for qualified leads?</p>
     </section>
 
-    <div class="contact-container">
-        <a href="services.html" class="back-link">← Back to Services</a>
-        
-        <div class="contact-form">
-            <div id="successMessage" class="success-message">
-                Thank you! Your inquiry has been submitted. We'll be in touch soon.
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+
+                <div class="info-item">
+                    <h3>📍 Office Location</h3>
+                    <p>
+                        5231 Grays Ridge Dr<br>
+                        Charlotte, NC 28269
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>📞 Phone</h3>
+                    <p>
+                        <a href="tel:2523396146">(252) 339-6146</a><br>
+                        Monday - Friday: 9am - 6pm EST
+                    </p>
+                </div>
+
+                <div class="info-item">
+                    <h3>✉️ Email</h3>
+                    <p>
+                        <a href="mailto:dariuswalton906@gmail.com">dariuswalton906@gmail.com</a><br>
+                        We respond within 24 hours
+                    </p>
+                </div>
+
+                <div class="quick-links">
+                    <a href="services.html#deal-analysis" class="quick-link">📊 Order Deal Analysis</a>
+                    <a href="services.html#cost-estimating" class="quick-link">🔨 Get Cost Estimate</a>
+                    <a href="services.html#lead-gen" class="quick-link">🎯 Subscribe to Leads</a>
+                </div>
             </div>
 
-            <form id="contactForm">
-                <div class="form-section">
-                    <h2>Contact Information</h2>
-                    
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                <form id="contact-form">
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -206,128 +373,60 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
                     </div>
 
                     <div class="form-group">
-                        <label for="service">Service Interested In *</label>
+                        <label for="service">I'm Interested In *</label>
                         <select id="service" name="service" required>
-                            <option value="">Select a service</option>
-                            <option value="Cost Estimating">Cost Estimating</option>
-                            <option value="Property Valuation">Property Valuation</option>
-                            <option value="CMA">CMAs / Market Analysis</option>
-                            <option value="Deal Analysis">Deal Analysis</option>
-                            <option value="Financial Modeling">Financial Modeling</option>
-                            <option value="Deal Sourcing">Deal Sourcing Subscription</option>
-                            <option value="Transaction Coordination">Transaction Coordination</option>
-                            <option value="Project Management">Construction Project Management</option>
-                            <option value="GC Services">Full GC Services</option>
-                            <option value="Development">Development Projects</option>
-                            <option value="Construction Management">Construction Management</option>
-                            <option value="Other">Other</option>
+                            <option value="">Select a service...</option>
+                            <option value="deal-analysis">Deal Analysis</option>
+                            <option value="cost-estimating">Cost Estimating</option>
+                            <option value="lead-gen">Investor Lead Generation</option>
+                            <option value="other">Other / General Inquiry</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="propertyAddress">Property Address (if applicable)</label>
-                        <input type="text" id="propertyAddress" name="propertyAddress" placeholder="Optional">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your project or what you need help with..." required></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="message">Project Details / Questions *</label>
-                        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project or what you need help with..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="timeline">Project Timeline</label>
-                        <select id="timeline" name="timeline">
-                            <option value="">Select timeline</option>
-                            <option value="Immediate">Immediate (within 1 week)</option>
-                            <option value="1-2 weeks">1-2 weeks</option>
-                            <option value="1 month">Within 1 month</option>
-                            <option value="2-3 months">2-3 months</option>
-                            <option value="3+ months">3+ months</option>
-                            <option value="Just exploring">Just exploring options</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-submit">Submit Inquiry</button>
-            </form>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Southern Cities Enterprises. All rights reserved.</p>
-        <p>Building the future of real estate, one project at a time.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-bottom">
+            <p>5231 Grays Ridge Dr, Charlotte NC 28269 | (252) 339-6146</p>
+            <p>© 2025 Southern Cities Enterprises. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // Pre-fill service if passed via URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const serviceParam = urlParams.get('service');
-        if (serviceParam) {
-            const serviceSelect = document.getElementById('service');
-            // Try to match the service parameter
-            for (let option of serviceSelect.options) {
-                if (option.value.toLowerCase().includes(serviceParam.toLowerCase()) || 
-                    serviceParam.toLowerCase().includes(option.value.toLowerCase())) {
-                    serviceSelect.value = option.value;
-                    break;
-                }
-            }
-        }
-
         // Handle form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                propertyAddress: document.getElementById('propertyAddress').value,
-                message: document.getElementById('message').value,
-                timeline: document.getElementById('timeline').value,
-                submittedAt: new Date().toISOString()
-            };
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
             // In production, you would send this to your backend
-            // For now, we'll simulate success
-            console.log('Form submitted:', formData);
-            
-            // Show success message
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Reset form
-            this.reset();
-            
-            // Scroll to success message
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            // For now, just show success and reset form
+            alert('Thanks for reaching out! We\'ll get back to you within 24 hours.');
+            form.reset();
 
-            // In production, implement actual form submission:
-            /*
-            fetch('/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('successMessage').style.display = 'block';
-                this.reset();
-            })
-            .catch(error => {
-                alert('There was an error submitting your inquiry. Please try again or email us directly.');
-                console.error('Error:', error);
-            });
-            */
+            // You could also redirect to a thank you page:
+            // window.location.href = 'thank-you.html';
         });
     </script>
+
 </body>
 </html>

@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services & Pricing | Southern Cities Enterprises</title>
-    <meta name="description" content="From consulting retainers to quick-win services and done-for-you solutions. Find the perfect service for your real estate business needs.">
+    <title>Services & Pricing | Southern Cities</title>
+    <meta name="description" content="Deal analysis, cost estimating, and investor lead generation. Same-day turnaround, transparent pricing.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Stripe.js -->
+    <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
     
     <style>
@@ -23,7 +23,7 @@
             --black: #000000;
             --white: #ffffff;
             --gray: #6F6E77;
-            --light-bg: #F6F6FF;
+            --light-gray: #F7F7F7;
         }
 
         * {
@@ -33,1087 +33,709 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             color: var(--navy);
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
         }
 
-        /* Hero Section */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 1.5rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--navy);
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .btn-header {
+            background: var(--orange);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-header:hover {
+            background: var(--navy);
+        }
+
+        /* Hero */
         .hero {
             background: linear-gradient(135deg, var(--navy) 0%, #1a2f6b 100%);
             color: white;
-            padding: 5rem 5% 3rem;
+            padding: 4rem 5% 3rem;
             text-align: center;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero .subtitle {
-            font-size: 1.4rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            opacity: 0.95;
-        }
-
-        /* Quiz/Assessment Section */
-        .quiz-section {
-            background: var(--orange);
-            color: white;
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
-        .quiz-section h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .quiz-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .quiz-options {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+        /* Service Section */
+        .service-section {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .service-section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        .service-container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .quiz-card {
-            background: white;
-            color: var(--navy);
-            padding: 2rem;
-            border-radius: 12px;
-            flex: 1;
-            min-width: 280px;
-            max-width: 350px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .quiz-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-        }
-
-        .quiz-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--orange);
-        }
-
-        .quiz-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        /* Section Headers */
-        .section-header {
-            padding: 4rem 5% 2rem;
+        .service-header {
             text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .section-header.bg-light {
-            background: var(--light-bg);
-        }
-
-        .section-header.bg-white {
-            background: white;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: var(--orange);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .section-badge.green {
-            background: var(--green);
-        }
-
-        .section-header h2 {
-            font-size: 3rem;
+        .service-header h2 {
+            font-size: 2.5rem;
             color: var(--navy);
             margin-bottom: 1rem;
         }
 
-        .section-header .subtitle {
+        .service-header p {
             font-size: 1.2rem;
             color: var(--gray);
             max-width: 700px;
             margin: 0 auto;
         }
 
-        /* Services Container */
-        .services-container {
-            padding: 2rem 5% 4rem;
+        /* Pricing Tables */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
 
-        .services-container.bg-light {
-            background: var(--light-bg);
-        }
-
-        .services-container.bg-white {
+        .pricing-card {
             background: white;
-        }
-
-        /* CTA Box for Consulting */
-        .consulting-cta {
-            max-width: 1200px;
-            margin: 0 auto 3rem;
-            background: linear-gradient(135deg, var(--orange) 0%, #ff7518 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
             text-align: center;
-            box-shadow: 0 8px 30px rgba(250, 140, 65, 0.3);
+            position: relative;
+            transition: all 0.3s;
         }
 
-        .consulting-cta h3 {
-            font-size: 2.5rem;
+        .pricing-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--orange);
+            border-width: 3px;
+            transform: scale(1.05);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--orange);
+            color: white;
+            padding: 0.4rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            color: var(--navy);
             margin-bottom: 1rem;
         }
 
-        .consulting-cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .consulting-cta .features {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .consulting-cta .feature {
-            text-align: center;
-        }
-
-        .consulting-cta .feature-number {
-            font-size: 2.5rem;
+        .pricing-card .price {
+            font-size: 3rem;
             font-weight: 800;
-            display: block;
+            color: var(--orange);
             margin-bottom: 0.5rem;
         }
 
-        .consulting-cta .feature-label {
+        .pricing-card .price-suffix {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .pricing-card .turnaround {
             font-size: 0.95rem;
-            opacity: 0.95;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-weight: 500;
         }
 
-        .btn-consulting {
-            background: white;
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.7rem 0;
+            color: var(--navy);
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
             color: var(--orange);
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        .pricing-cta {
+            background: var(--orange);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            display: block;
+            text-align: center;
+            transition: all 0.3s;
             border: none;
-            padding: 1.25rem 3rem;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            width: 100%;
         }
 
-        .btn-consulting:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        .pricing-cta:hover {
+            background: var(--navy);
+            transform: translateY(-2px);
         }
 
-        /* Services Grid */
-        .services-grid {
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 2px solid #e5e5e5;
+        }
+
+        .faq-section h3 {
+            font-size: 1.8rem;
+            color: var(--navy);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--orange);
+        }
+
+        .faq-item h4 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Why Us Section */
+        .why-us {
+            background: var(--navy);
+            color: white;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .why-us h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .why-badges {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .service-card {
-            background: white;
-            border-radius: 12px;
+        .badge {
+            background: rgba(255,255,255,0.1);
             padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
         }
 
-        .bg-light .service-card {
-            background: white;
-        }
-
-        .bg-white .service-card {
-            background: var(--light-bg);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-
-        .service-header {
-            border-bottom: 3px solid var(--orange);
-            padding-bottom: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-title {
-            font-size: 1.8rem;
-            color: var(--navy);
-            margin-bottom: 0.5rem;
-        }
-
-        .service-subtitle {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-
-        .popular-badge {
-            background: var(--red);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        .service-tiers {
-            margin: 1.5rem 0;
-            flex-grow: 1;
-        }
-
-        .tier {
-            background: var(--light-bg);
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--orange);
-            transition: all 0.2s ease;
-        }
-
-        .tier:hover {
-            border-left-width: 6px;
-            background: #ededff;
-        }
-
-        .bg-white .tier {
-            background: white;
-        }
-
-        .tier-name {
-            font-weight: 600;
-            color: var(--navy);
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .tier-price {
-            font-size: 1.5rem;
-            color: var(--orange);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .tier-description {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .tier-features {
-            list-style: none;
-            margin-top: 0.75rem;
-        }
-
-        .tier-features li {
-            padding: 0.4rem 0;
-            color: var(--gray);
-            font-size: 0.85rem;
-        }
-
-        .tier-features li:before {
-            content: "✓ ";
-            color: var(--orange);
-            font-weight: 700;
-            margin-right: 0.5rem;
-        }
-
-        .turnaround-badge {
-            display: inline-block;
-            background: var(--green);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        /* Buttons */
-        .btn-buy {
-            background: var(--orange);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .btn-buy:hover {
-            background: var(--navy);
-            transform: scale(1.02);
-        }
-
-        .btn-quote {
-            background: var(--navy);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-quote:hover {
-            background: var(--orange);
-            transform: scale(1.02);
-        }
-
-        /* Comparison Table */
-        .comparison-section {
-            padding: 4rem 5%;
-            background: white;
-        }
-
-        .comparison-table {
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            background: var(--light-bg);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-
-        .table-header {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            background: var(--navy);
-            color: white;
-            padding: 1.5rem;
-            font-weight: 700;
-        }
-
-        .table-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            padding: 1.5rem;
-            border-bottom: 1px solid white;
-            align-items: center;
-        }
-
-        .table-row:nth-child(even) {
-            background: white;
-        }
-
-        .feature-name {
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        /* Final CTA */
-        .final-cta {
-            background: linear-gradient(135deg, var(--navy) 0%, #1a2f6b 100%);
-            color: white;
-            padding: 5rem 5%;
-            text-align: center;
-        }
-
-        .final-cta h2 {
+        .badge-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .final-cta p {
+        .badge h3 {
             font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-
-        .btn-large {
-            background: var(--orange);
-            color: white;
-            border: none;
-            padding: 1.5rem 4rem;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-large:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 30px rgba(250, 140, 65, 0.5);
-        }
-
-        /* Cart Sidebar */
-        .cart-sidebar {
-            position: fixed;
-            right: -400px;
-            top: 0;
-            width: 400px;
-            height: 100vh;
-            background: white;
-            box-shadow: -2px 0 20px rgba(0,0,0,0.2);
-            transition: right 0.3s ease;
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-sidebar.open {
-            right: 0;
-        }
-
-        .cart-header {
-            background: var(--navy);
-            color: white;
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .cart-items {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-        }
-
-        .cart-item {
-            border-bottom: 1px solid #eee;
-            padding: 1rem 0;
-        }
-
-        .cart-item-name {
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .cart-item-price {
+            margin-bottom: 0.5rem;
             color: var(--orange);
-            font-weight: 600;
         }
 
-        .cart-footer {
-            border-top: 2px solid var(--navy);
-            padding: 1.5rem;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .btn-checkout {
-            background: var(--orange);
-            color: white;
-            border: none;
-            padding: 1rem;
-            border-radius: 8px;
-            width: 100%;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .btn-checkout:hover {
-            background: var(--navy);
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 3rem 1rem;
-            color: var(--gray);
+        .badge p {
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
 
         /* Footer */
         .footer {
             background: var(--navy);
             color: white;
-            padding: 2rem 5%;
+            padding: 3rem 5% 1.5rem;
             text-align: center;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .why-badges {
+                grid-template-columns: 1fr;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
 
-            .section-header h2 {
+            .service-header h2 {
                 font-size: 2rem;
             }
 
-            .consulting-cta h3 {
-                font-size: 2rem;
-            }
-
-            .consulting-cta .features {
-                gap: 1.5rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cart-sidebar {
-                width: 100%;
-                right: -100%;
-            }
-
-            .table-header,
-            .table-row {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-
-            .table-header {
+            .nav-links {
                 display: none;
-            }
-
-            .final-cta h2 {
-                font-size: 2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- GLOBAL HEADER -->
-    <div id="header-placeholder"></div>
-    <script src="load-header.js"></script>
 
-    <!-- Hero Section -->
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                Southern<span>Cities</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#deal-analysis">Deal Analysis</a>
+                <a href="#cost-estimating">Cost Estimating</a>
+                <a href="#lead-gen">Lead Gen</a>
+                <a href="contact.html" class="btn-header">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
     <section class="hero">
-        <h1>Transform Your Real Estate Business</h1>
-        <p class="subtitle">From consulting retainers to quick-win services and done-for-you solutions — find the perfect service for where you are today.</p>
+        <h1>Services Built for Active Investors</h1>
+        <p>Transparent pricing. Fast turnaround. Real expertise from investors who run deals daily.</p>
     </section>
 
-    <!-- Quiz/Assessment Section -->
-    <section class="quiz-section">
-        <h2>Which Service Is Right for You?</h2>
-        <p>Answer one simple question to find your perfect fit</p>
-        
-        <div class="quiz-options">
-            <div class="quiz-card" onclick="window.location.href='consulting.html'">
-                <h3>🚀 I Want to Scale</h3>
-                <p>Looking for strategic guidance, systems, and ongoing support to grow my business</p>
+    <!-- Deal Analysis Service -->
+    <section class="service-section" id="deal-analysis">
+        <div class="service-container">
+            <div class="service-header">
+                <h2>📊 Deal Analysis Package</h2>
+                <p>Complete financial analysis so you know if the deal works before you commit.</p>
             </div>
 
-            <div class="quiz-card" onclick="scrollToSection('quick-wins')">
-                <h3>⚡ I Need Results Fast</h3>
-                <p>Looking for quick analysis, estimates, or reports to make immediate decisions</p>
-            </div>
-
-            <div class="quiz-card" onclick="scrollToSection('done-for-you')">
-                <h3>🤝 I Want Done-for-You</h3>
-                <p>Looking for someone to manage projects, coordinate deals, or handle the details</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 1: CONSULTING SERVICES (Lead with Highest Value) -->
-    <section class="section-header bg-light">
-        <span class="section-badge green">💰 HIGHEST VALUE</span>
-        <h2>Business Consulting Services</h2>
-        <p class="subtitle">Recurring retainers for strategic guidance, systems development, and growth acceleration</p>
-    </section>
-
-    <section class="services-container bg-light">
-        <div class="consulting-cta">
-            <h3>Scale Your Business with Expert Consulting</h3>
-            <p>Work directly with proven systems to avoid costly mistakes and accelerate growth</p>
-            <div class="features">
-                <div class="feature">
-                    <span class="feature-number">$50K+</span>
-                    <span class="feature-label">Avg Client ROI (90 days)</span>
-                </div>
-                <div class="feature">
-                    <span class="feature-number">87%</span>
-                    <span class="feature-label">Client Success Rate</span>
-                </div>
-                <div class="feature">
-                    <span class="feature-number">4.2x</span>
-                    <span class="feature-label">Average ROI Multiple</span>
-                </div>
-            </div>
-            <a href="consulting.html" class="btn-consulting">View Consulting Packages →</a>
-        </div>
-
-        <div class="services-grid">
-            <!-- Quick Preview of Retainer Packages -->
-            <div class="service-card">
-                <div class="service-header">
-                    <h3 class="service-title">Retainer Packages</h3>
-                    <p class="service-subtitle">Monthly recurring consulting</p>
-                </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">Starter Retainer</div>
-                        <div class="tier-price">$2,497/mo</div>
-                        <p class="tier-description">5 hours/month consulting + support</p>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Growth Retainer ⭐ MOST POPULAR</div>
-                        <div class="tier-price">$4,997/mo</div>
-                        <p class="tier-description">10 hours/month + weekly calls</p>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Enterprise Retainer</div>
-                        <div class="tier-price">$9,997/mo</div>
-                        <p class="tier-description">20 hours/month + priority support</p>
-                    </div>
+            <div class="pricing-grid">
+                <!-- Basic -->
+                <div class="pricing-card">
+                    <h3>Basic Deal Review</h3>
+                    <div class="price">$297</div>
+                    <p class="turnaround">24-hour turnaround</p>
+                    <ul class="pricing-features">
+                        <li>Single property analysis</li>
+                        <li>ARV estimate</li>
+                        <li>Basic repair cost estimate</li>
+                        <li>Simple ROI calculation</li>
+                        <li>Go/No-Go recommendation</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkout('deal-basic', 297)">Get Started</button>
                 </div>
 
-                <a href="consulting.html" class="btn-quote">View All Packages</a>
-            </div>
-
-            <!-- One-Time Consulting Preview -->
-            <div class="service-card">
-                <div class="service-header">
-                    <h3 class="service-title">One-Time Consulting</h3>
-                    <p class="service-subtitle">Lower commitment entry point</p>
-                </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">Business Strategy Session</div>
-                        <div class="tier-price">$997</div>
-                        <p class="tier-description">2-hour deep dive + action plan</p>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Deal Structure Analysis</div>
-                        <div class="tier-price">$1,497</div>
-                        <p class="tier-description">Expert review of specific deal</p>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Process Audit & Optimization</div>
-                        <div class="tier-price">$2,997</div>
-                        <p class="tier-description">Full business operations audit</p>
-                    </div>
+                <!-- Full -->
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Full Financial Model</h3>
+                    <div class="price">$597</div>
+                    <p class="turnaround">24-48 hour turnaround</p>
+                    <ul class="pricing-features">
+                        <li>Complete proforma</li>
+                        <li>Multiple scenario analysis</li>
+                        <li>Detailed cash flow projections</li>
+                        <li>Financing options comparison</li>
+                        <li>Exit strategy recommendations</li>
+                        <li>Market comps</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkout('deal-full', 597)">Get Started</button>
                 </div>
 
-                <a href="consulting.html#onetime" class="btn-quote">Learn More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 2: QUICK-WIN SERVICES (Instant Gratification) -->
-    <section class="section-header bg-white" id="quick-wins">
-        <span class="section-badge">⚡ QUICK-WIN SERVICES</span>
-        <h2>Get Results in 24-72 Hours</h2>
-        <p class="subtitle">Fast, affordable deliverables with instant checkout. Perfect for urgent needs and one-time projects.</p>
-    </section>
-
-    <section class="services-container bg-white">
-        <div class="services-grid">
-            <!-- Cost Estimates -->
-            <div class="service-card">
-                <div class="service-header">
-                    <h3 class="service-title">Cost Estimates</h3>
-                    <p class="service-subtitle">Fast construction estimates</p>
-                </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">Basic Scope</div>
-                        <div class="tier-price">$150</div>
-                        <p class="tier-description">Cosmetic rehab estimates</p>
-                        <span class="turnaround-badge">24-48hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Cost Estimate - Basic', 150)">Add to Cart</button>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Detailed Estimate</div>
-                        <div class="tier-price">$500</div>
-                        <p class="tier-description">Full line-item breakdown</p>
-                        <span class="turnaround-badge">48-72hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Cost Estimate - Detailed', 500)">Add to Cart</button>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Comprehensive</div>
-                        <div class="tier-price">$1,200</div>
-                        <p class="tier-description">Major renovation + permitting</p>
-                        <span class="turnaround-badge">72hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Cost Estimate - Comprehensive', 1200)">Add to Cart</button>
-                    </div>
+                <!-- Premium -->
+                <div class="pricing-card">
+                    <h3>Premium Package</h3>
+                    <div class="price">$997</div>
+                    <p class="turnaround">48-hour turnaround</p>
+                    <ul class="pricing-features">
+                        <li>Everything in Full Model</li>
+                        <li>Full market analysis</li>
+                        <li>Negotiation strategy</li>
+                        <li>Risk assessment</li>
+                        <li>30-minute strategy call</li>
+                        <li>Contractor introduction</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkout('deal-premium', 997)">Get Started</button>
                 </div>
             </div>
 
-            <!-- Property Valuations -->
-            <div class="service-card">
-                <span class="popular-badge">POPULAR</span>
-                <div class="service-header">
-                    <h3 class="service-title">Property Valuations</h3>
-                    <p class="service-subtitle">Comprehensive analysis</p>
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h3>Deal Analysis FAQ</h3>
+                <div class="faq-item">
+                    <h4>What do you need from me?</h4>
+                    <p>Property address, asking price, and any info you have (condition, comps, etc.). We'll pull public records and run our analysis.</p>
                 </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">Quick Analysis</div>
-                        <div class="tier-price">$99</div>
-                        <p class="tier-description">Basic deal screening</p>
-                        <span class="turnaround-badge">24hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Property Valuation - Quick', 99)">Add to Cart</button>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Professional Report</div>
-                        <div class="tier-price">$499</div>
-                        <p class="tier-description">Full underwriting package</p>
-                        <span class="turnaround-badge">48hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Property Valuation - Professional', 499)">Add to Cart</button>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Investment Grade</div>
-                        <div class="tier-price">$2,500</div>
-                        <p class="tier-description">Investor-ready documentation</p>
-                        <span class="turnaround-badge">72hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Property Valuation - Investment Grade', 2500)">Add to Cart</button>
-                    </div>
+                <div class="faq-item">
+                    <h4>How accurate are your ARV estimates?</h4>
+                    <p>We use the same comps and methods we use for our own deals. Licensed broker pulling live MLS data + recent sales.</p>
                 </div>
-            </div>
-
-            <!-- Deal Analysis -->
-            <div class="service-card">
-                <div class="service-header">
-                    <h3 class="service-title">Deal Analysis</h3>
-                    <p class="service-subtitle">Investment evaluation</p>
-                </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">Quick Screen</div>
-                        <div class="tier-price">$199</div>
-                        <p class="tier-description">Go/no-go decision support</p>
-                        <span class="turnaround-badge">24hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Deal Analysis - Quick Screen', 199)">Add to Cart</button>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Full Underwriting</div>
-                        <div class="tier-price">$497</div>
-                        <p class="tier-description">Complete deal evaluation</p>
-                        <span class="turnaround-badge">48hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Deal Analysis - Full', 497)">Add to Cart</button>
-                    </div>
-
-                    <div class="tier">
-                        <div class="tier-name">Investor Package</div>
-                        <div class="tier-price">$997</div>
-                        <p class="tier-description">Investor presentation ready</p>
-                        <span class="turnaround-badge">72hr turnaround</span>
-                        <button class="btn-buy" onclick="addToCart('Deal Analysis - Investor Package', 997)">Add to Cart</button>
-                    </div>
+                <div class="faq-item">
+                    <h4>Can I get a refund if I don't like it?</h4>
+                    <p>Yes. If you're not happy with the analysis quality, we'll refund 100%. No questions asked.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: DONE-FOR-YOU SERVICES (Higher Ticket) -->
-    <section class="section-header bg-light" id="done-for-you">
-        <span class="section-badge">🤝 DONE-FOR-YOU SERVICES</span>
-        <h2>We Handle Everything</h2>
-        <p class="subtitle">Premium project management and coordination services. Custom pricing based on scope.</p>
-    </section>
-
-    <section class="services-container bg-light">
-        <div class="services-grid">
-            <!-- Transaction Coordination -->
-            <div class="service-card">
-                <div class="service-header">
-                    <h3 class="service-title">Transaction Coordination</h3>
-                    <p class="service-subtitle">End-to-end closing support</p>
-                </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">Per Transaction</div>
-                        <div class="tier-price">$500 - $1,200</div>
-                        <p class="tier-description">Priced based on complexity</p>
-                        <ul class="tier-features">
-                            <li>Document management</li>
-                            <li>Deadline tracking</li>
-                            <li>Vendor coordination</li>
-                            <li>Closing support</li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="contact.html?service=Transaction+Coordination" class="btn-quote">Request Quote</a>
+    <!-- Cost Estimating Service -->
+    <section class="service-section" id="cost-estimating">
+        <div class="service-container">
+            <div class="service-header">
+                <h2>🔨 Cost Estimating</h2>
+                <p>Accurate construction cost estimates from a licensed GC who runs his own rehabs.</p>
             </div>
 
-            <!-- Project Management -->
-            <div class="service-card">
-                <span class="popular-badge">HIGH DEMAND</span>
-                <div class="service-header">
-                    <h3 class="service-title">Project Management</h3>
-                    <p class="service-subtitle">Construction oversight</p>
+            <div class="pricing-grid">
+                <!-- Quick -->
+                <div class="pricing-card">
+                    <h3>Quick Estimate</h3>
+                    <div class="price">$150</div>
+                    <p class="turnaround">24-hour turnaround</p>
+                    <ul class="pricing-features">
+                        <li>Rough scope estimate</li>
+                        <li>High-level cost breakdown</li>
+                        <li>Timeline estimate</li>
+                        <li>Good for initial screening</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkout('estimate-quick', 150)">Get Started</button>
                 </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">Per Project</div>
-                        <div class="tier-price">$2,997/month</div>
-                        <p class="tier-description">Single project management</p>
-                        <ul class="tier-features">
-                            <li>Weekly site visits</li>
-                            <li>Sub coordination</li>
-                            <li>Permitting support</li>
-                            <li>Budget tracking</li>
-                        </ul>
-                    </div>
 
-                    <div class="tier">
-                        <div class="tier-name">Portfolio Package</div>
-                        <div class="tier-price">$5,997/month</div>
-                        <p class="tier-description">3-5 simultaneous projects</p>
-                        <ul class="tier-features">
-                            <li>All Per Project features</li>
-                            <li>Priority sub access</li>
-                            <li>Bulk material discounts</li>
-                            <li>Monthly portfolio review</li>
-                        </ul>
-                    </div>
+                <!-- Detailed -->
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Detailed Estimate</h3>
+                    <div class="price">$450</div>
+                    <p class="turnaround">48-hour turnaround</p>
+                    <ul class="pricing-features">
+                        <li>Line-item breakdown</li>
+                        <li>Labor & materials separated</li>
+                        <li>Detailed timeline</li>
+                        <li>Contractor recommendations</li>
+                        <li>Permit cost estimates</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkout('estimate-detailed', 450)">Get Started</button>
                 </div>
-                <a href="contact.html?service=Project+Management" class="btn-quote">Request Quote</a>
+
+                <!-- Contractor-Ready -->
+                <div class="pricing-card">
+                    <h3>Contractor-Ready Bid Package</h3>
+                    <div class="price">$1,200</div>
+                    <p class="turnaround">3-5 day turnaround</p>
+                    <ul class="pricing-features">
+                        <li>Full scope of work document</li>
+                        <li>Detailed specifications</li>
+                        <li>Material callouts</li>
+                        <li>Ready to send to contractors</li>
+                        <li>Warranty & insurance guidance</li>
+                        <li>GC recommendations</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="checkout('estimate-bid', 1200)">Get Started</button>
+                </div>
             </div>
 
-            <!-- Full GC Services -->
-            <div class="service-card">
-                <div class="service-header">
-                    <h3 class="service-title">Full GC Services</h3>
-                    <p class="service-subtitle">Turnkey construction</p>
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h3>Cost Estimating FAQ</h3>
+                <div class="faq-item">
+                    <h4>What do you need from me?</h4>
+                    <p>Photos of the property, scope of work (or we can help define it), and any specs you have in mind. Property address for permit research.</p>
                 </div>
-                
-                <div class="service-tiers">
-                    <div class="tier">
-                        <div class="tier-name">General Contractor</div>
-                        <div class="tier-price">10-15% of project cost</div>
-                        <p class="tier-description">Complete construction oversight</p>
-                        <ul class="tier-features">
-                            <li>Full sub management</li>
-                            <li>Permitting & inspections</li>
-                            <li>Material procurement</li>
-                            <li>Quality control</li>
-                            <li>Budget & schedule mgmt</li>
-                        </ul>
-                    </div>
+                <div class="faq-item">
+                    <h4>How accurate are your estimates?</h4>
+                    <p>We manage 8 active construction projects right now. Our estimates are based on real bids we're getting from subcontractors today.</p>
                 </div>
-                <a href="contact.html?service=GC+Services" class="btn-quote">Request Quote</a>
+                <div class="faq-item">
+                    <h4>Do you recommend contractors?</h4>
+                    <p>Yes (on Detailed and Bid packages). We'll connect you with vetted subs we use on our own projects in the Charlotte area.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Comparison Table -->
-    <section class="comparison-section">
-        <div class="section-header bg-white">
-            <h2>Compare Service Types</h2>
-            <p class="subtitle">Choose the right service for your needs and timeline</p>
-        </div>
+    <!-- Lead Gen Service -->
+    <section class="service-section" id="lead-gen">
+        <div class="service-container">
+            <div class="service-header">
+                <h2>🎯 Investor Lead Generation</h2>
+                <p>Qualified investor leads delivered monthly. Pre-foreclosures, foreclosures, and motivated sellers.</p>
+            </div>
 
-        <div class="comparison-table">
-            <div class="table-header">
-                <div>Service Type</div>
-                <div style="text-align: center;">Best For</div>
-                <div style="text-align: center;">Timeline</div>
-                <div style="text-align: center;">Investment</div>
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$497<span class="price-suffix">/mo</span></div>
+                    <p class="turnaround">Monthly subscription</p>
+                    <ul class="pricing-features">
+                        <li>25 qualified leads/month</li>
+                        <li>Basic criteria (pre-foreclosure OR foreclosure)</li>
+                        <li>Charlotte metro area</li>
+                        <li>Weekly delivery</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="subscribe('leadgen-starter', 497)">Subscribe</button>
+                </div>
+
+                <!-- Growth -->
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Growth</h3>
+                    <div class="price">$697<span class="price-suffix">/mo</span></div>
+                    <p class="turnaround">Monthly subscription</p>
+                    <ul class="pricing-features">
+                        <li>50 qualified leads/month</li>
+                        <li>Custom criteria targeting</li>
+                        <li>Charlotte + surrounding counties</li>
+                        <li>Weekly reports & insights</li>
+                        <li>Priority email support</li>
+                        <li>Monthly strategy call</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="subscribe('leadgen-growth', 697)">Subscribe</button>
+                </div>
+
+                <!-- Pro -->
+                <div class="pricing-card">
+                    <h3>Pro</h3>
+                    <div class="price">$997<span class="price-suffix">/mo</span></div>
+                    <p class="turnaround">Monthly subscription</p>
+                    <ul class="pricing-features">
+                        <li>100 qualified leads/month</li>
+                        <li>Advanced custom criteria</li>
+                        <li>Multi-county targeting</li>
+                        <li>Daily updates</li>
+                        <li>Priority phone support</li>
+                        <li>Weekly strategy calls</li>
+                        <li>First access to new sources</li>
+                    </ul>
+                    <button class="pricing-cta" onclick="subscribe('leadgen-pro', 997)">Subscribe</button>
+                </div>
             </div>
-            <div class="table-row">
-                <div class="feature-name">Consulting Retainers</div>
-                <div style="text-align: center;">Long-term growth & systems</div>
-                <div style="text-align: center;">Ongoing</div>
-                <div style="text-align: center;">$2.5K-$10K/mo</div>
-            </div>
-            <div class="table-row">
-                <div class="feature-name">One-Time Consulting</div>
-                <div style="text-align: center;">Specific challenges</div>
-                <div style="text-align: center;">1-2 weeks</div>
-                <div style="text-align: center;">$1K-$3K</div>
-            </div>
-            <div class="table-row">
-                <div class="feature-name">Quick-Win Services</div>
-                <div style="text-align: center;">Fast decisions & analysis</div>
-                <div style="text-align: center;">24-72 hours</div>
-                <div style="text-align: center;">$99-$2.5K</div>
-            </div>
-            <div class="table-row">
-                <div class="feature-name">Done-For-You Services</div>
-                <div style="text-align: center;">Project execution</div>
-                <div style="text-align: center;">Project duration</div>
-                <div style="text-align: center;">$3K-$6K/mo</div>
+
+            <!-- FAQ -->
+            <div class="faq-section">
+                <h3>Lead Generation FAQ</h3>
+                <div class="faq-item">
+                    <h4>Where do the leads come from?</h4>
+                    <p>Pre-foreclosure lists from county records, active foreclosure from law firm websites, Propstream, InvestorLift, and our proprietary data sources.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are these exclusive leads?</h4>
+                    <p>No. We're transparent about this — these are public records and data sources other investors can access. What you're paying for is our filtering, organization, and delivery so you don't have to do the research yourself.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I cancel anytime?</h4>
+                    <p>Yes. No contracts. Cancel anytime. You'll receive leads through the end of your billing period.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What criteria can I customize?</h4>
+                    <p>Property type, equity level, location (zip codes or counties), listing status, estimated value range, and more. We'll dial it in based on your buy box.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
-        <h2>Not Sure Where to Start?</h2>
-        <p>Book a free 30-minute strategy call. We'll help you find the perfect service for your needs.</p>
-        <a href="contact.html?service=Free+Strategy+Call" class="btn-large">Book Free Strategy Call</a>
-    </section>
-
-    <!-- Cart Sidebar -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Your Cart</h3>
-            <button class="cart-close" onclick="toggleCart()">×</button>
-        </div>
-        <div class="cart-items" id="cartItems">
-            <div class="empty-cart">Your cart is empty</div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotal">$0</span>
+    <!-- Why Us -->
+    <section class="why-us">
+        <h2>Why Southern Cities?</h2>
+        <div class="why-badges">
+            <div class="badge">
+                <div class="badge-icon">⚡</div>
+                <h3>Licensed GC + Real Estate Broker</h3>
+                <p>Not consultants. Licensed professionals running active projects.</p>
             </div>
-            <button class="btn-checkout" onclick="checkout()">Proceed to Checkout</button>
+            <div class="badge">
+                <div class="badge-icon">🏗️</div>
+                <h3>Active Investor</h3>
+                <p>We use these same tools on our own 8 active deals right now.</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">🎯</div>
+                <h3>Same-Day Turnaround</h3>
+                <p>Time kills deals. We move fast because we know what it's like to compete.</p>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2026 Southern Cities Enterprises. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-bottom">
+            <p>5231 Grays Ridge Dr, Charlotte NC 28269 | (252) 339-6146</p>
+            <p>© 2025 Southern Cities Enterprises. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // Cart Management
-        let cart = [];
+        // Stripe integration
+        const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY'); // Replace with actual key
 
-        function addToCart(serviceName, price) {
-            const item = {
-                name: serviceName,
-                price: price
-            };
+        function checkout(product, amount) {
+            // Store product info
+            sessionStorage.setItem('product', product);
+            sessionStorage.setItem('amount', amount);
             
-            cart.push(item);
-            updateCart();
-            toggleCart(); // Auto-open cart
+            // Redirect to checkout page
+            window.location.href = `checkout.html?product=${product}&amount=${amount}`;
         }
 
-        function updateCart() {
-            const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
+        function subscribe(plan, amount) {
+            // Store subscription info
+            sessionStorage.setItem('plan', plan);
+            sessionStorage.setItem('amount', amount);
             
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
-                cartTotal.textContent = '$0';
-                return;
-            }
-            
-            let html = '';
-            let total = 0;
-            
-            cart.forEach((item, index) => {
-                html += `
-                    <div class="cart-item">
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">$${item.price.toLocaleString()}</div>
-                        <button onclick="removeFromCart(${index})" style="background: var(--red); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; margin-top: 0.5rem;">Remove</button>
-                    </div>
-                `;
-                total += item.price;
+            // Redirect to checkout page with subscription flag
+            window.location.href = `checkout.html?plan=${plan}&amount=${amount}&type=subscription`;
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
-            
-            cartItems.innerHTML = html;
-            cartTotal.textContent = `$${total.toLocaleString()}`;
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar');
-            sidebar.classList.toggle('open');
-        }
-
-        function checkout() {
-            if (cart.length === 0) {
-                alert('Your cart is empty!');
-                return;
-            }
-            
-            sessionStorage.setItem('cart', JSON.stringify(cart));
-            window.location.href = 'checkout.html';
-        }
-
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-
-        // Initialize
-        updateCart();
+        });
     </script>
+
 </body>
 </html>
