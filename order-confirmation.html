@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | Southern Cities Enterprises</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy: #132452;
+            --orange: #fa8c41;
+            --red: #E63A27;
+            --white: #ffffff;
+            --gray: #6F6E77;
+            --light-bg: #F6F6FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+            background: var(--light-bg);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .navbar {
+            background-color: var(--navy);
+            padding: 1rem 5%;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .confirmation-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .confirmation-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+        }
+
+        .confirmation-card h1 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .confirmation-message {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .order-details {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .order-details h2 {
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .detail-value {
+            color: var(--gray);
+        }
+
+        .order-items {
+            margin-top: 1.5rem;
+        }
+
+        .order-item {
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .item-price {
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .next-steps {
+            background: #e8f5e9;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .next-steps h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+        }
+
+        .next-steps li:before {
+            content: "✓ ";
+            color: #4CAF50;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--navy);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background: var(--navy);
+            color: white;
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: var(--light-bg);
+            border-radius: 8px;
+        }
+
+        .contact-info p {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: var(--orange);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .subscription-notice {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .confirmation-card h1 {
+                font-size: 2rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.svg" alt="Southern Cities Enterprises">
+            </a>
+        </div>
+    </nav>
+
+    <div class="confirmation-container">
+        <div class="confirmation-card">
+            <div class="success-icon">✓</div>
+            
+            <h1>Order Confirmed!</h1>
+            <p class="confirmation-message">
+                Thank you for choosing Southern Cities Enterprises. Your order has been received and we'll be in touch within 24 hours.
+            </p>
+
+            <div class="order-details" id="orderDetails">
+                <!-- Order details will be populated by JavaScript -->
+            </div>
+
+            <div class="next-steps">
+                <h3>What Happens Next?</h3>
+                <ul>
+                    <li>You'll receive a confirmation email within 5 minutes</li>
+                    <li>Our team will review your order and project details</li>
+                    <li>We'll contact you within 24 hours to schedule your service</li>
+                    <li>A dedicated project manager will be assigned to your account</li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Questions about your order?</strong></p>
+                <p>Contact us at <a href="mailto:info@southerncitiesinvestors.com">info@southerncitiesinvestors.com</a></p>
+                <p>Or call: <a href="tel:+17047471330">(704) 747-1330</a></p>
+            </div>
+
+            <div class="action-buttons">
+                <a href="services.html" class="btn btn-secondary">Browse More Services</a>
+                <a href="index.html" class="btn btn-primary">Return to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load order details from sessionStorage
+        function displayOrderDetails() {
+            const orderDetailsDiv = document.getElementById('orderDetails');
+            
+            try {
+                const orderData = sessionStorage.getItem('lastOrder');
+                if (!orderData) {
+                    window.location.href = 'services.html';
+                    return;
+                }
+
+                const order = JSON.parse(orderData);
+                
+                let hasSubscription = order.items.some(item => item.isSubscription);
+                let html = '<h2>Order Summary</h2>';
+                
+                // Customer details
+                html += `
+                    <div class="detail-row">
+                        <span class="detail-label">Order Date:</span>
+                        <span class="detail-value">${new Date(order.date).toLocaleDateString()}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Customer Name:</span>
+                        <span class="detail-value">${order.customer.name}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value">${order.customer.email}</span>
+                    </div>
+                `;
+
+                if (order.propertyAddress) {
+                    html += `
+                        <div class="detail-row">
+                            <span class="detail-label">Property Address:</span>
+                            <span class="detail-value">${order.propertyAddress}</span>
+                        </div>
+                    `;
+                }
+
+                // Order items
+                html += '<div class="order-items">';
+                order.items.forEach(item => {
+                    html += `
+                        <div class="order-item">
+                            <div class="item-name">${item.name}</div>
+                            <div class="item-price">$${item.price.toLocaleString()}${item.isSubscription ? '/mo' : ''}</div>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+
+                // Total
+                html += `
+                    <div class="detail-row" style="margin-top: 1rem; padding-top: 1rem; border-top: 2px solid var(--navy); font-size: 1.2rem;">
+                        <span class="detail-label">Total:</span>
+                        <span style="color: var(--orange); font-weight: 700;">$${order.total.toLocaleString()}</span>
+                    </div>
+                `;
+
+                orderDetailsDiv.innerHTML = html;
+
+                // Add subscription notice if applicable
+                if (hasSubscription) {
+                    const notice = document.createElement('div');
+                    notice.className = 'subscription-notice';
+                    notice.innerHTML = '<strong>📅 Subscription Services:</strong> Your subscription(s) will renew monthly. You can manage or cancel anytime by contacting us.';
+                    orderDetailsDiv.parentNode.insertBefore(notice, orderDetailsDiv.nextSibling);
+                }
+
+            } catch (e) {
+                console.error('Error loading order:', e);
+                window.location.href = 'services.html';
+            }
+        }
+
+        // Initialize
+        displayOrderDetails();
+    </script>
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Southern Cities Enterprises</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <style>
+        :root {
+            --navy: #132452;
+            --orange: #fa8c41;
+            --red: #E63A27;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #6F6E77;
+            --light-bg: #F6F6FF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--navy);
+            line-height: 1.6;
+            background: var(--light-bg);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        .navbar {
+            background-color: var(--navy);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2rem;
+        }
+
+        .checkout-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section h2 {
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        #card-element {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+        }
+
+        #card-errors {
+            color: var(--red);
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .order-summary {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .order-summary h2 {
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .order-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .item-price {
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .subscription-badge {
+            display: inline-block;
+            background: var(--navy);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+        }
+
+        .order-total {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--navy);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .total-label {
+            color: var(--navy);
+        }
+
+        .total-amount {
+            color: var(--orange);
+        }
+
+        .btn-submit {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover:not(:disabled) {
+            background: var(--navy);
+            transform: scale(1.02);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .test-mode-banner {
+            background: #fff3cd;
+            color: #856404;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: 2px solid #ffc107;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: var(--orange);
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .empty-cart-message h2 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .btn-continue {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 968px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Mode Banner -->
+    <div class="test-mode-banner">
+        🔒 TEST MODE - Use test card: 4242 4242 4242 4242 | Any future date | Any CVC
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/images/logo.svg" alt="Southern Cities Enterprises">
+            </a>
+        </div>
+    </nav>
+
+    <div class="checkout-container">
+        <div>
+            <a href="services.html" class="back-link">← Back to Services</a>
+            
+            <div class="checkout-form" id="checkoutForm">
+                <form id="payment-form">
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h2>Contact Information</h2>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <!-- Billing Address -->
+                    <div class="form-section">
+                        <h2>Billing Address</h2>
+                        <div class="form-group">
+                            <label for="address">Street Address *</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select State</option>
+                                    <option value="NC">North Carolina</option>
+                                    <option value="SC">South Carolina</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="GA">Georgia</option>
+                                    <option value="TN">Tennessee</option>
+                                    <option value="VA">Virginia</option>
+                                    <!-- Add other states as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">ZIP Code *</label>
+                                <input type="text" id="zip" name="zip" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property Information (Optional) -->
+                    <div class="form-section">
+                        <h2>Project Details (Optional)</h2>
+                        <div class="form-group">
+                            <label for="propertyAddress">Property Address</label>
+                            <input type="text" id="propertyAddress" name="propertyAddress" placeholder="If applicable">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectNotes">Additional Notes</label>
+                            <textarea id="projectNotes" name="projectNotes" rows="3" placeholder="Any specific requirements or questions?"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information -->
+                    <div class="form-section">
+                        <h2>Payment Information</h2>
+                        <div class="form-group">
+                            <label for="card-element">Credit or Debit Card *</label>
+                            <div id="card-element"></div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="submit-button">
+                        <span id="button-text">Complete Purchase</span>
+                        <div class="spinner" id="spinner"></div>
+                    </button>
+
+                    <div class="security-badge">
+                        🔒 Secure payment powered by Stripe
+                    </div>
+                </form>
+            </div>
+
+            <!-- Empty Cart Message (hidden by default) -->
+            <div class="empty-cart-message" id="emptyCart" style="display: none;">
+                <h2>Your cart is empty</h2>
+                <p>Add some services to your cart before checking out.</p>
+                <a href="services.html" class="btn-continue">Browse Services</a>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary" id="orderSummary"></div>
+    </div>
+
+    <script>
+        // Initialize Stripe (TEST MODE - Replace with your test publishable key)
+        const stripe = Stripe('pk_test_51234567890abcdefghijklmnopqrstuvwxyz'); // PLACEHOLDER - Replace with actual test key
+        const elements = stripe.elements();
+        
+        // Create card element
+        const cardElement = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#132452',
+                    fontFamily: '"Montserrat", sans-serif',
+                    '::placeholder': {
+                        color: '#6F6E77',
+                    },
+                },
+            },
+        });
+        cardElement.mount('#card-element');
+
+        // Handle card errors
+        cardElement.on('change', (event) => {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Load cart from sessionStorage
+        let cart = [];
+        try {
+            const cartData = sessionStorage.getItem('cart');
+            if (cartData) {
+                cart = JSON.parse(cartData);
+            }
+        } catch (e) {
+            console.error('Error loading cart:', e);
+        }
+
+        // Display order summary
+        function displayOrderSummary() {
+            const summaryDiv = document.getElementById('orderSummary');
+            const checkoutForm = document.getElementById('checkoutForm');
+            const emptyCart = document.getElementById('emptyCart');
+            
+            if (cart.length === 0) {
+                checkoutForm.style.display = 'none';
+                summaryDiv.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
+
+            let html = '<h2>Order Summary</h2>';
+            let total = 0;
+            let hasSubscription = false;
+
+            cart.forEach(item => {
+                html += `
+                    <div class="order-item">
+                        <div class="item-name">
+                            ${item.name}
+                            ${item.isSubscription ? '<span class="subscription-badge">RECURRING</span>' : ''}
+                        </div>
+                        <div class="item-price">$${item.price.toLocaleString()}${item.isSubscription ? '/mo' : ''}</div>
+                    </div>
+                `;
+                total += item.price;
+                if (item.isSubscription) hasSubscription = true;
+            });
+
+            html += `
+                <div class="order-total">
+                    <span class="total-label">Total ${hasSubscription ? 'Today' : ''}:</span>
+                    <span class="total-amount">$${total.toLocaleString()}</span>
+                </div>
+            `;
+
+            if (hasSubscription) {
+                html += '<p style="color: var(--gray); font-size: 0.9rem; margin-top: 1rem;">* Subscriptions will renew monthly until cancelled</p>';
+            }
+
+            summaryDiv.innerHTML = html;
+        }
+
+        // Handle form submission
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const submitButton = document.getElementById('submit-button');
+            const spinner = document.getElementById('spinner');
+            const buttonText = document.getElementById('button-text');
+            
+            // Disable button and show spinner
+            submitButton.disabled = true;
+            buttonText.style.display = 'none';
+            spinner.style.display = 'block';
+
+            // Collect billing details
+            const billingDetails = {
+                name: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: {
+                    line1: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    postal_code: document.getElementById('zip').value,
+                    country: 'US',
+                }
+            };
+
+            // In a real implementation, you would:
+            // 1. Send cart data to your backend
+            // 2. Backend creates Stripe Payment Intent or Subscription
+            // 3. Backend returns client secret
+            // 4. Use client secret to confirm payment
+
+            // DEMO MODE: Simulate successful payment
+            setTimeout(() => {
+                // Store order details
+                const orderDetails = {
+                    items: cart,
+                    customer: billingDetails,
+                    total: cart.reduce((sum, item) => sum + item.price, 0),
+                    date: new Date().toISOString(),
+                    propertyAddress: document.getElementById('propertyAddress').value,
+                    notes: document.getElementById('projectNotes').value
+                };
+                
+                sessionStorage.setItem('lastOrder', JSON.stringify(orderDetails));
+                sessionStorage.removeItem('cart');
+                
+                // Redirect to confirmation
+                window.location.href = 'order-confirmation.html';
+            }, 2000);
+
+            /* REAL IMPLEMENTATION (commented out - requires backend):
+            
+            try {
+                // Create payment intent on backend
+                const response = await fetch('/api/create-payment-intent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        cart: cart,
+                        billingDetails: billingDetails,
+                        propertyAddress: document.getElementById('propertyAddress').value,
+                        notes: document.getElementById('projectNotes').value
+                    })
+                });
+
+                const { clientSecret } = await response.json();
+
+                // Confirm payment with Stripe
+                const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: billingDetails,
+                    }
+                });
+
+                if (error) {
+                    // Show error to customer
+                    document.getElementById('card-errors').textContent = error.message;
+                    submitButton.disabled = false;
+                    buttonText.style.display = 'inline';
+                    spinner.style.display = 'none';
+                } else {
+                    // Payment successful
+                    sessionStorage.setItem('paymentIntent', paymentIntent.id);
+                    sessionStorage.removeItem('cart');
+                    window.location.href = 'order-confirmation.html';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('card-errors').textContent = 'An error occurred. Please try again.';
+                submitButton.disabled = false;
+                buttonText.style.display = 'inline';
+                spinner.style.display = 'none';
+            }
+            */
+        });
+
+        // Initialize page
+        displayOrderSummary();
+    </script>
+</body>
+</html>
