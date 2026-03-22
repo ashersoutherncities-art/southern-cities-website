@@ -1,0 +1,407 @@
+<!-- SOUTHERN CITIES ENTERPRISES - GLOBAL HEADER -->
+<!-- Clean, modern navigation with dropdown support -->
+
+<style>
+    /* Header Styles */
+    .site-header {
+        background-color: #132452;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+    }
+
+    /* Logo */
+    .header-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .header-logo img {
+        height: 50px;
+        width: auto;
+        transition: transform 0.3s ease;
+    }
+
+    .header-logo:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Desktop Navigation */
+    .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 2.5rem;
+        align-items: center;
+    }
+
+    .nav-item {
+        position: relative;
+    }
+
+    .nav-link {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        transition: color 0.3s ease;
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    .nav-link:hover {
+        color: #fa8c41;
+    }
+
+    .nav-link.active {
+        color: #fa8c41;
+        position: relative;
+    }
+
+    .nav-link.active::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: #fa8c41;
+    }
+
+    /* Dropdown */
+    .nav-item.has-dropdown {
+        position: relative;
+    }
+
+    .dropdown-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        cursor: pointer;
+    }
+
+    .dropdown-toggle::after {
+        content: '▾';
+        font-size: 12px;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-item.has-dropdown:hover .dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 0.5rem;
+        background-color: #ffffff;
+        min-width: 220px;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+
+    .nav-item.has-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 0.875rem 1.25rem;
+        color: #132452;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #f6f6ff;
+        color: #fa8c41;
+        border-left-color: #fa8c41;
+        padding-left: 1.5rem;
+    }
+
+    .dropdown-menu a:not(:last-child) {
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* CTA Button */
+    .cta-button {
+        background-color: #fa8c41;
+        color: #ffffff;
+        padding: 0.75rem 1.75rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        border: 2px solid #fa8c41;
+        display: inline-block;
+    }
+
+    .cta-button:hover {
+        background-color: transparent;
+        color: #fa8c41;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(250, 140, 65, 0.3);
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 0.5rem;
+        background: none;
+        border: none;
+    }
+
+    .mobile-toggle span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translateY(8px);
+    }
+
+    .mobile-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-8px);
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 968px) {
+        .header-nav {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background-color: #132452;
+            flex-direction: column;
+            gap: 0;
+            padding: 2rem 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-nav.active {
+            max-height: calc(100vh - 80px);
+            opacity: 1;
+            overflow-y: auto;
+        }
+
+        .nav-menu {
+            flex-direction: column;
+            gap: 0;
+            width: 100%;
+        }
+
+        .nav-item {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link {
+            padding: 1rem 2rem;
+        }
+
+        .dropdown-menu {
+            position: static;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            box-shadow: none;
+            margin-top: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-item.has-dropdown.mobile-open .dropdown-menu {
+            max-height: 500px;
+        }
+
+        .dropdown-menu a {
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-left: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(250, 140, 65, 0.2);
+            padding-left: 2rem;
+        }
+
+        .cta-button {
+            margin: 1.5rem 2rem 0.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        .mobile-toggle {
+            display: flex;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-container {
+            padding: 0 1.5rem;
+            height: 70px;
+        }
+
+        .header-logo img {
+            height: 40px;
+        }
+    }
+</style>
+
+<header class="site-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <a href="index.html" class="header-logo">
+            <img src="assets/images/logo.svg" alt="Southern Cities Enterprises">
+        </a>
+
+        <!-- Navigation -->
+        <nav class="header-nav" id="headerNav">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item has-dropdown" id="servicesDropdown">
+                    <span class="nav-link dropdown-toggle">Services</span>
+                    <div class="dropdown-menu">
+                        <a href="general-contracting.html">General Contracting</a>
+                        <a href="acquisitions.html">Acquisitions</a>
+                        <a href="brokerage.html">Brokerage</a>
+                        <a href="development.html">Development</a>
+                        <a href="services.html">View All Services</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="blog.html" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </nav>
+
+        <!-- Mobile Toggle -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<script>
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const headerNav = document.getElementById('headerNav');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+
+    mobileToggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+        headerNav.classList.toggle('active');
+        document.body.style.overflow = headerNav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Mobile dropdown toggle
+    if (window.innerWidth <= 968) {
+        servicesDropdown.addEventListener('click', function(e) {
+            if (e.target.classList.contains('dropdown-toggle')) {
+                this.classList.toggle('mobile-open');
+            }
+        });
+    }
+
+    // Active page highlighting
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || 
+            (currentPage === 'index.html' && linkPage === 'index.html') ||
+            (currentPage === '' && linkPage === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+
+    // Highlight Services dropdown if on a service page
+    const servicePages = ['general-contracting.html', 'acquisitions.html', 'brokerage.html', 'development.html', 'services.html'];
+    if (servicePages.includes(currentPage)) {
+        document.querySelector('.dropdown-toggle').classList.add('active');
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.site-header') && headerNav.classList.contains('active')) {
+            mobileToggle.classList.remove('active');
+            headerNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (window.innerWidth > 968 && headerNav.classList.contains('active')) {
+                mobileToggle.classList.remove('active');
+                headerNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }, 250);
+    });
+</script>
